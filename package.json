@@ -10,7 +10,9 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.20",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.8",
+    "lodash-es": "^4.17.21",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2"
   },
