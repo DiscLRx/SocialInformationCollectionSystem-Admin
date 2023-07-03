@@ -25,6 +25,7 @@
 import {defineComponent, reactive} from 'vue';
 import axios from "axios";
 import router from "@/router";
+import {message} from "ant-design-vue";
 
 export default defineComponent({
     setup() {
@@ -59,6 +60,11 @@ export default defineComponent({
                         router.push('/')
                     }
 
+                } else {
+                    message.warn({
+                        content: '登录失败',
+                        duration: 3
+                    })
                 }
             })
         }
