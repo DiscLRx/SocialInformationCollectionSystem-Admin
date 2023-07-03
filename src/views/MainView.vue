@@ -45,8 +45,12 @@ export default defineComponent({
             }
             router.push(matcher[key])
         }
+
         return {
-            selectedKeys: ref(['1']),
+            selectedKeys: ref([{
+                '/user-manage': '1',
+                '/questionnaire-manage': '2'
+            }[location.pathname]]),
             collapsed: ref(false),
             showLogo: ref(true),
             route
