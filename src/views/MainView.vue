@@ -16,9 +16,10 @@
             </a-menu>
         </a-layout-sider>
         <a-layout :style="{ height: '100vh' }">
-            <a-layout-header style="background: #fff; padding: 0">
+            <a-layout-header style="background: #fff; padding: 0; display: flex;flex-direction: row; justify-content: space-between; align-items: center">
                 <menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => {collapsed = !collapsed; showLogo = !collapsed;}" />
                 <menu-fold-outlined v-else class="trigger" @click="() => {collapsed = !collapsed; showLogo = !collapsed;}" />
+                <a-button style="margin-right: 20px" @click="signOut">退出</a-button>
             </a-layout-header>
             <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', overflowY: 'auto'}">
               <RouterView />
@@ -46,6 +47,11 @@ export default defineComponent({
             router.push(matcher[key])
         }
 
+        function signOut(){
+            localStorage.removeItem('token')
+            router.push('/sign-in')
+        }
+
         return {
             selectedKeys: ref([{
                 '/user-manage': '1',
@@ -53,7 +59,8 @@ export default defineComponent({
             }[location.pathname]]),
             collapsed: ref(false),
             showLogo: ref(true),
-            route
+            route,
+            signOut
         };
     },
 });
