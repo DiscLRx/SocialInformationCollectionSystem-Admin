@@ -10,6 +10,9 @@ const router = createRouter({
     {
       path: '',
       name: 'main',
+      meta: {
+        auth: true
+      },
       redirect: '/user-manage',
       component: MainView,
       children: [
@@ -31,6 +34,19 @@ const router = createRouter({
       component: SignInView
     }
   ]
+})
+
+router.beforeEach((to, from, next)=>{
+  if (to.meta.auth && localStorage.getItem('token') === null){
+    next({
+      path: '/sign-in',
+      query: {
+        redirect: to.fullPath
+      },
+    })
+  }else {
+    next()
+  }
 })
 
 export default router
