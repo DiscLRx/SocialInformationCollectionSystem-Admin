@@ -89,8 +89,7 @@ const columns = [
 ];
 
 async function getUsers() {
-    let data = [];
-    await request({
+    return  await request({
         url: '/admin-api/users',
         method: 'GET',
         headers: {
@@ -98,9 +97,8 @@ async function getUsers() {
             'Token': localStorage.getItem('token')
         }
     }).then((res) => {
-        data = res.data.data
+        return res.data.data
     })
-    return data
 }
 
 async function updatetUser(id, data) {
