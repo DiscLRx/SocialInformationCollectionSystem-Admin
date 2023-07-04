@@ -144,7 +144,7 @@ export default defineComponent({
                 let enable = editableData[key]['enable']
                 enable = enable === 'y';
 
-                updatetUser(
+                await updatetUser(
                     editableData[key]['id'],
                     {
                         username: editableData[key]['username'],

@@ -119,7 +119,7 @@ const columns = [
 
 async function getQuestionnaires() {
     return await request({
-        url: '/admin-api/questionnnaires',
+        url: '/admin-api/questionnaires',
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ async function getQuestionnaires() {
 
 async function getQuestionnaireDetails(qnid) {
     return await request({
-        url: `/admin-api/questionnnaires/${qnid}`,
+        url: `/admin-api/questionnaires/${qnid}`,
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ async function getQuestionnaireDetails(qnid) {
 
 async function updateQuestionnareEnable(qnid, enable){
     return await request({
-        url: `/admin-api/questionnnaires/${qnid}`,
+        url: `/admin-api/questionnaires/${qnid}`,
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -185,7 +185,10 @@ export default defineComponent({
                 let enable = editableData[key]['enable']
                 enable = enable === 'y';
 
-                updateQuestionnareEnable(editableData[key]['id'], enable).then((res)=>{
+                await updateQuestionnareEnable(
+                    editableData[key]['id'],
+                    enable
+                ).then((res)=>{
                     let code = res.data.code
                     if (code === 0) {
                         Object.assign(dataSource.value.filter(item => key === item.id)[0], editableData[key]);
