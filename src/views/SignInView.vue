@@ -60,6 +60,11 @@ export default defineComponent({
                         router.push('/')
                     }
 
+                } else if (code === 12) {
+                    message.warn({
+                        content: res.data.data,
+                        duration: 3
+                    })
                 } else {
                     message.warn({
                         content: '登录失败',
