@@ -120,7 +120,7 @@ export default defineComponent({
         const save = ref()
 
         onMounted(async () => {
-            await getUsers().then((data) => {
+            getUsers().then((data) => {
                 data.forEach((user, index, arr) => {
                     arr[index].enable = user.enable ? 'y' : 'n'
                     arr[index].password = '********'
@@ -144,7 +144,7 @@ export default defineComponent({
                 let enable = editableData[key]['enable']
                 enable = enable === 'y';
 
-                await updatetUser(
+                updatetUser(
                     editableData[key]['id'],
                     {
                         username: editableData[key]['username'],

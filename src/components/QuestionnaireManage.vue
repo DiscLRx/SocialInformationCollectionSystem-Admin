@@ -118,8 +118,7 @@ const columns = [
 ];
 
 async function getQuestionnaires() {
-    let data = [];
-    await request({
+    return await request({
         url: '/admin-api/questionnnaires',
         method: 'GET',
         headers: {
@@ -127,9 +126,8 @@ async function getQuestionnaires() {
             'Token': localStorage.getItem('token')
         }
     }).then((res) => {
-        data = res.data.data
+        return res.data.data
     })
-    return data
 }
 
 async function getQuestionnaireDetails(qnid) {
@@ -166,7 +164,7 @@ export default defineComponent({
         const save = ref()
 
         onMounted(async () => {
-            await getQuestionnaires().then((data)=>{
+            getQuestionnaires().then((data)=>{
                 data.forEach((qn, index, arr) => {
                     arr[index].enable = qn.enable ? 'y' : 'n'
                     let b_ts = arr[index].begin_date
@@ -187,7 +185,7 @@ export default defineComponent({
                 let enable = editableData[key]['enable']
                 enable = enable === 'y';
 
-                await updateQuestionnareEnable(editableData[key]['id'], enable).then((res)=>{
+                updateQuestionnareEnable(editableData[key]['id'], enable).then((res)=>{
                     let code = res.data.code
                     if (code === 0) {
                         Object.assign(dataSource.value.filter(item => key === item.id)[0], editableData[key]);
