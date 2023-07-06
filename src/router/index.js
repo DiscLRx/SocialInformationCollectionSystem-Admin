@@ -31,6 +31,9 @@ const router = createRouter({
     {
       path: '/sign-in',
       name: 'sign-in',
+      meta: {
+        auth: false
+      },
       component: SignInView
     }
   ]

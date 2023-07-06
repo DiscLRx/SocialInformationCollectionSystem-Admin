@@ -16,7 +16,7 @@ export default defineConfig({
   server:{
     proxy:{
       "/admin-api": {
-        target: "http://192.168.31.48:2887",
+        target: "http://127.0.0.1:2887",
         changeOrigin: true,
         ws:true
       }
